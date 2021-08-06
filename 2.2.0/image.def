@@ -4,16 +4,16 @@ From: bartosz_bartmanski/default/r-base:4.0.3
 %files
     ./gen_igraph_input.R /scripts/
     ./run_carnival.R /scripts/
-    ./example_config.json /scripts/
+    ./carnival_example.json /config/
 
 %post
     apt -y update
+    apt -y install libhdf5-dev graphviz
 
-    /usr/local/bin/R --no-echo -e 'install.packages("devtools", repos = "http://cran.us.r-project.org")'
-    /usr/local/bin/R --no-echo -e 'devtools::install_github("saezlab/CARNIVAL")'
-    /usr/local/bin/R --no-echo -e 'install.packages(c("igraph", "rhdf5", "rjson"), repos = "http://cran.us.r-project.org")'
-
-    mkdir /data/
+    R -e 'install.packages(c("remotes", "igraph", "rjson", "BiocManager"), 
+    repos = c(CRAN = "https://cloud.r-project.org"))'
+    R -e 'remotes::install_github("saezlab/CARNIVAL@963fbc1db2d038bfeab76abe792416908327c176")'
+    R -e 'BiocManager::install("rhdf5")'
 
     echo "Done!"
 
@@ -22,6 +22,6 @@ From: bartosz_bartmanski/default/r-base:4.0.3
 
 %runscript
 	echo "Running an example"
-    /scripts/gen_igraph_input.R 10 8 3 3 Erdos /data/test.h5
-    /scripts/run_carnival.R /data/test.h5 /data/result.Rds /scripts/example_config.json
+    /scripts/gen_igraph_input.R 10 8 3 3 Erdos example_input.h5
+    /scripts/run_carnival.R example_input.h5 example_result.Rds /config/carnival_example.json
 
