@@ -1,7 +1,7 @@
 
 # CARNIVAL singularity images
 
-Repository for [CARNIVAL]i(https://github.com/saezlab/CARNIVAL/)
+Repository for [CARNIVAL](https://github.com/saezlab/CARNIVAL/)
 singularity images based on Ubuntu 20.04. 
 
 ## Build
