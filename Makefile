@@ -11,9 +11,6 @@ all: ${IMAGES}
 push_%:
 	singularity push $*/image.sif library://bartosz_bartmanski/default/carnival:$*
 
-.git/hooks/pre-commit:
-	ln -s ../../.pre-commit $@
-
 .git/hooks/pre-push:
 	ln -s ../../.pre-push $@
 

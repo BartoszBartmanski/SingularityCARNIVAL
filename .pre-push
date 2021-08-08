@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 for dir in */; do 
-    singularity push image.sif library://bartosz_bartmanski/default/r-base:4.0.3
+    if [ -f ${dir}/image.sif ]; then 
+        singularity push ${dir}/image.sif library://bartosz_bartmanski/default/carnival:${dir}
+    fi
 done
 
