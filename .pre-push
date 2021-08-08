@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+for dir in */; do 
+    singularity push image.sif library://bartosz_bartmanski/default/r-base:4.0.3
+done
+
