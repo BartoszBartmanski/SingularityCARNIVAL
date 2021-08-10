@@ -2,20 +2,19 @@ Bootstrap: library
 From: bartosz_bartmanski/default/r-base:4.0.3
 
 %files
-    ./gen_igraph_input.R /scripts/
-    ./run_carnival.R /scripts/
-    ./carnival_example.json /config/
+    renv.lock /scripts/
+    gen_igraph_input.R /scripts/
+    run_carnival.R /scripts/
+    carnival_example.json /scripts/
 
 %post
     apt -y update
     apt -y install libhdf5-dev graphviz
 
-    R -e 'install.packages(c("remotes", "igraph", "rjson", "BiocManager"), 
-    repos = c(CRAN = "https://cloud.r-project.org"))'
-    R -e 'remotes::install_github("saezlab/CARNIVAL@963fbc1db2d038bfeab76abe792416908327c176")'
-    R -e 'BiocManager::install("rhdf5")'
-
-    echo "Done!"
+    R -e 'install.packages("remotes", repos = c(CRAN = "https://cloud.r-project.org"))'
+    R -e 'remotes::install_github("rstudio/renv@0.14.0")'
+    cd /scripts/
+    R -e 'renv::restore()'
 
 %environment
     export LC_ALL=C
@@ -23,5 +22,5 @@ From: bartosz_bartmanski/default/r-base:4.0.3
 %runscript
 	echo "Running an example"
     /scripts/gen_igraph_input.R 10 8 3 3 Erdos example_input.h5
-    /scripts/run_carnival.R example_input.h5 example_result.Rds /config/carnival_example.json
+    /scripts/run_carnival.R example_input.h5 example_result.Rds /scripts/carnival_example.json
 
