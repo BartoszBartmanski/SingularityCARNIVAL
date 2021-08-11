@@ -2,9 +2,10 @@
 
 SYLABS_USERNAME=bartosz_bartmanski
 COLLECTION=default
+IMAGE=carnival
 
-for f in *.sif; do
+for f in $(find -name *.sif); do
     VERSION=$(echo ${f/.sif/} | cut -d'_' -f2)
     echo "Uploading ${f}"
-    singularity push ${f} library://${SYLABS_USERNAME}/${COLLECTION}/r-base:${VERSION}
+    singularity push ${f} library://${SYLABS_USERNAME}/${COLLECTION}/${IMAGE}:${VERSION}
 done
