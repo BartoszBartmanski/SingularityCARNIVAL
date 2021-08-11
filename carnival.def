@@ -1,15 +1,11 @@
 Bootstrap: library
-From: bartosz_bartmanski/default/r-base:4.0.3
-
-%files
-    renv.lock /scripts/
-    gen_igraph_input.R /scripts/
-    run_carnival.R /scripts/
-    carnival_example.json /scripts/
+From: bartosz_bartmanski/default/r-base:latest
 
 %post
     apt -y update
-    apt -y install libhdf5-dev graphviz
+    apt -y install libhdf5-dev graphviz git
+
+    git clone https://github.com/BartoszBartmanski/SingularityCARNIVAL.git /scripts/
 
     R -e 'install.packages("remotes", repos = c(CRAN = "https://cloud.r-project.org"))'
     R -e 'remotes::install_github("rstudio/renv@0.14.0")'
