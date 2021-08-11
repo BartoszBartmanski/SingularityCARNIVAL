@@ -1,14 +1,17 @@
 
-all: carnival_latest.sif
+all: carnival_2.2.0.sif
 
 carnival_%.sif: carnival.def
 	sudo singularity build $@ $^
 	singularity sign $@
 
 .PHONY: push_%
-push_%:
-	singularity push carnival_$*.sif library://bartosz_bartmanski/default/carnival:$*
+push_%: carnival_%.sif
+	singularity push $^ library://bartosz_bartmanski/default/carnival:$*
+
+.git/hooks/pre-push:
+	ln -s ../../.pre-push $@
 
 clean:
-	rm -rf */*.sif
+	rm -rf *.sif
 

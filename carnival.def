@@ -1,5 +1,5 @@
 Bootstrap: library
-From: bartosz_bartmanski/default/r-base:latest
+From: bartosz_bartmanski/default/r-base:4.0.3
 
 %post
     apt -y update

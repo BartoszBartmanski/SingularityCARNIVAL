@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+SYLABS_USERNAME=bartosz_bartmanski
+COLLECTION=default
+
+for f in *.sif; do
+    VERSION=$(echo ${f/.sif/} | cut -d'_' -f2)
+    echo "Uploading ${f}"
+    singularity push ${f} library://${SYLABS_USERNAME}/${COLLECTION}/r-base:${VERSION}
+done
