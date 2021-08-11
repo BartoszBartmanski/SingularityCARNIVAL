@@ -8,23 +8,21 @@ singularity images based on Ubuntu 20.04.
 
 To create a new image:
 ```
-cd <version>
-sudo singularity build image.sif image.def
+sudo singularity build carnival_<version>.sif carnival.def
 ```
 For example:
 ```
-cd 2.2.0
-sudo singularity build image.sif image.def
+sudo singularity build carnival_latest.sif carnival.def
 ```
 
 ## Download
 
-To download an image:
+To download an image from sylabs library:
 ```
 singularity pull library://bartosz_bartmanski/default/carnival:<version>
 ```
 For example:
 ```
-singularity pull library://bartosz_bartmanski/default/carnival:2.2.0
+singularity pull library://bartosz_bartmanski/default/carnival:latest
 ```
 

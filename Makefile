@@ -1,18 +1,13 @@
 
-IMAGES := $(patsubst %.def,%.sif,$(wildcard */image.def))
+all: carnival_latest.sif
 
-all: ${IMAGES}
-
-%.sif: %.def
-	cd $(dir $@) && sudo singularity build $(notdir $@) $(notdir $^)
+carnival_%.sif: carnival.def
+	sudo singularity build $@ $^
 	singularity sign $@
 
 .PHONY: push_%
 push_%:
-	singularity push $*/image.sif library://bartosz_bartmanski/default/carnival:$*
-
-.git/hooks/pre-push:
-	ln -s ../../.pre-push $@
+	singularity push carnival_$*.sif library://bartosz_bartmanski/default/carnival:$*
 
 clean:
 	rm -rf */*.sif
