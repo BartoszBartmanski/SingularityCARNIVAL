@@ -12,6 +12,10 @@ push_%: carnival_%.sif
 .git/hooks/pre-push:
 	ln -s ../../.pre-push $@
 
-clean:
+.PHONY: clean_example
+clean_example:
+	rm -f *.RData *.lp *.h5 *.dot *.Rds
+
+clean: clean_example
 	rm -rf *.sif
 

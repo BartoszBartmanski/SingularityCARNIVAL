@@ -1,5 +1,5 @@
-Bootstrap: library
-From: bartosz_bartmanski/default/r-base:4.0.3
+Bootstrap: docker
+From: r-base:4.0.3
 
 %post
     apt -y update
