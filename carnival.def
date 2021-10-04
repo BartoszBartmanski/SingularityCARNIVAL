@@ -1,15 +1,21 @@
 Bootstrap: docker
 From: r-base:4.0.3
 
+%files
+    ./lp_solve.json /example/
+    ./example_cplex.R /example/
+    ./gen_igraph_input.R /example/
+    ./run_carnival.R /example/
+    ./LICENSE /LICENSE
+    ./README.md /README.md
+    ./renv.lock /renv.lock
+
 %post
     apt -y update
     apt -y install libhdf5-dev graphviz git
 
-    git clone https://github.com/BartoszBartmanski/SingularityCARNIVAL.git /scripts/
-
     R -e 'install.packages("remotes", repos = c(CRAN = "https://cloud.r-project.org"))'
     R -e 'remotes::install_github("rstudio/renv@0.14.0")'
-    cd /scripts/
     R -e 'renv::restore()'
 
 %environment
@@ -17,6 +23,6 @@ From: r-base:4.0.3
 
 %runscript
 	echo "Running an example"
-    /scripts/gen_igraph_input.R 10 8 3 3 Erdos example_input.h5
-    /scripts/run_carnival.R example_input.h5 example_result.Rds /scripts/carnival_example.json
+    /example/gen_igraph_input.R 10 8 3 3 Erdos example_input.h5
+    /example/run_carnival.R example_input.h5 example_result.Rds /example/lp_solve.json
 
