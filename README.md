@@ -12,7 +12,7 @@ singularity pull library://bartosz_bartmanski/default/carnival:<version>
 ```
 For example:
 ```
-singularity pull library://bartosz_bartmanski/default/carnival:latest
+singularity pull library://bartosz_bartmanski/default/carnival:2.2.0
 ```
 
 ## Usage
@@ -42,5 +42,5 @@ sudo singularity build carnival_<version>.sif carnival.def
 ```
 For example:
 ```
-sudo singularity build carnival_latest.sif carnival.def
+sudo singularity build carnival_2.2.0.sif carnival.def
 ```

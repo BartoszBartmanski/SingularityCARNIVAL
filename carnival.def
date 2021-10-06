@@ -1,25 +1,25 @@
-Bootstrap: docker
-From: r-base:4.0.3
+Bootstrap: library
+From: bartosz_bartmanski/default/r-base:4.0.3
 
 %files
     ./lp_solve.json /example/
-    ./example_cplex.R /example/
+    ./other_solvers.R /example/
     ./gen_igraph_input.R /example/
     ./run_carnival.R /example/
     ./LICENSE /LICENSE
     ./README.md /README.md
-    ./renv.lock /renv.lock
 
 %post
     apt -y update
     apt -y install libhdf5-dev graphviz git
 
-    R -e 'install.packages("remotes", repos = c(CRAN = "https://cloud.r-project.org"))'
-    R -e 'remotes::install_github("rstudio/renv@0.14.0")'
-    R -e 'renv::restore()'
+    R -e 'install.packages(c("remotes", "BiocManager", "igraph", "stringi"), repos = c(CRAN = "https://cloud.r-project.org"))'
+    R -e 'BiocManager::install("rhdf5")'
+    R -e 'remotes::install_github("BartoszBartmanski/CARNIVAL")'
 
 %environment
     export LC_ALL=C
+    export R_LIBS="/usr/local/lib/R/site-library:/usr/lib/R/site-library:/usr/lib/R/library"
 
 %runscript
 	echo "Running an example"
