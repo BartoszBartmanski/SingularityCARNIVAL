@@ -24,15 +24,20 @@ within the container, execute the following:
 ```
 which will produce `example_output.Rds` amongst other intermediate files.
 
-To use another ILP solver, e.g. CPLEX, run the following:
+To use [CPLEX](https://www.ibm.com/analytics/cplex-optimizer) ILP solver
 ```
-singularity exec -B <cplex_dir>:<cplex_dir> carnival_2.2.0.sif /example/example_cplex.R <path_to_cplex>
+singularity exec -B <cplex_dir>:<cplex_dir>,./:/data/ carnival_2.2.0.sif /example/other_solvers.R cplex <cplex_dir>/cplex /data/cplex_example.Rds
 ```
-For example, assuming CPLEX is intalled in 
-`/opt/ibm/ILOG/CPLEX_Studio201/cplex/bin/x86-64_linux/cplex`:
+where `<cplex_dir>` is the cplex installation path e.g.
+`/opt/ibm/ILOG/CPLEX_Studio201/cplex/bin/x86-64_linux/cplex`.
+
+To use [Gurobi](https://www.gurobi.com/) ILP solver:
 ```
-singularity exec -B /opt/:/opt/ carnival_2.2.0.sif /example/example_cplex.R /opt/ibm/ILOG/CPLEX_Studio201/cplex/bin/x86-64_linux/cplex
+singularity exec -B <gurobi_dir>:<gurobi_dir>,./:/data/ --env "LD_LIBRARY_PATH=<gurobi_dir>/lib" carnival_2.2.0.sif /example/other_solvers.R gurobi <gurobi_dir>/bin/gurobi_cl /data/gurobi_example.Rds
 ```
+where `<gurobi_dir>` is the gurobi installation path e.g.
+`/opt/gurobi911/linux64/`
+
 
 ## Build
 
