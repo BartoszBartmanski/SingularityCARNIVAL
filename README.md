@@ -29,7 +29,7 @@ To use [CPLEX](https://www.ibm.com/analytics/cplex-optimizer) ILP solver
 singularity exec -B <cplex_dir>:<cplex_dir>,./:/data/ carnival_2.2.0.sif /example/other_solvers.R cplex <cplex_dir>/cplex /data/cplex_example.Rds
 ```
 where `<cplex_dir>` is the cplex installation path e.g.
-`/opt/ibm/ILOG/CPLEX_Studio201/cplex/bin/x86-64_linux/cplex`.
+`/opt/ibm/ILOG/CPLEX_Studio201/cplex/bin/x86-64_linux/`.
 
 To use [Gurobi](https://www.gurobi.com/) ILP solver:
 ```
