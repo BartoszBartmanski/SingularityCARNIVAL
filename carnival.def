@@ -15,7 +15,7 @@ From: bartosz_bartmanski/default/r-base:4.0.3
 
     R -e 'install.packages(c("remotes", "BiocManager", "igraph", "stringi"), repos = c(CRAN = "https://cloud.r-project.org"))'
     R -e 'BiocManager::install("rhdf5")'
-    R -e 'remotes::install_github("BartoszBartmanski/CARNIVAL")'
+    R -e 'remotes::install_github("saezlab/CARNIVAL", ref="963fbc1db2d038bfeab76abe792416908327c176")'
 
 %environment
     export LC_ALL=C
