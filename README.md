@@ -33,10 +33,10 @@ where `<cplex_dir>` is the cplex installation path e.g.
 
 To use [Gurobi](https://www.gurobi.com/) ILP solver:
 ```
-singularity exec -B <gurobi_dir>:<gurobi_dir>,./:/data/ --env "LD_LIBRARY_PATH=<gurobi_dir>/lib" carnival_2.2.0.sif /example/other_solvers.R gurobi <gurobi_dir>/bin/gurobi_cl /data/gurobi_example.Rds
+singularity exec -B <gurobi_dir>:<gurobi_dir>,./:/data/ --env "LD_LIBRARY_PATH=<gurobi_dir>/linux64/lib" carnival_2.2.0.sif /example/other_solvers.R gurobi <gurobi_dir>/linux64/bin/gurobi_cl /data/gurobi_example.Rds
 ```
 where `<gurobi_dir>` is the gurobi installation path e.g.
-`/opt/gurobi911/linux64/`
+`/opt/gurobi911/`
 
 
 ## Build
